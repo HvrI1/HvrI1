@@ -16,7 +16,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectAllUser() {
-        List<User> users = userMapper.selectAllUser();
-        return users;
+        return userMapper.selectAllUser();;
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userMapper.findUserByUsername(username);
+    }
+
+    @Override
+    public User addUser(User user) {
+        //对密码进行md5加密后存入数据库
+
+        return  ;
     }
 }

@@ -12,4 +12,7 @@ public interface UserMapper {
     //查询所有用户信息
     @Select("select * from user")
     List<User> selectAllUser();
+
+    @Select("select * from user where username=#{username}")
+    User findUserByUsername(String username);
 }

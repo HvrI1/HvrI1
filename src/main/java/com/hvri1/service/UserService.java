@@ -8,4 +8,8 @@ import java.util.List;
 public interface UserService {
 
     List<User> selectAllUser();
+
+    User findUserByUsername(String username);
+
+    User addUser(User user);
 }
