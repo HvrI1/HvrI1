@@ -1,6 +1,7 @@
 package com.hvri1.mapper;
 
 import com.hvri1.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,6 +14,8 @@ public interface UserMapper {
     @Select("select * from user")
     List<User> selectAllUser();
 
-    @Select("select * from user where username=#{username}")
+    @Select("select * from user where user_username=#{username}")
     User findUserByUsername(String username);
+    @Insert("insert into user ()")
+    void registerUser(User user);
 }

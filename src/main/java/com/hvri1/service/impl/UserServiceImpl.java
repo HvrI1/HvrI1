@@ -3,6 +3,7 @@ package com.hvri1.service.impl;
 import com.hvri1.mapper.UserMapper;
 import com.hvri1.pojo.User;
 import com.hvri1.service.UserService;
+import com.hvri1.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> selectAllUser() {
-        return userMapper.selectAllUser();;
+        return userMapper.selectAllUser();
     }
 
     @Override
@@ -25,9 +26,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(User user) {
-        //对密码进行md5加密后存入数据库
+    public void registerUser(User user) {
+        String md5String = Md5Util.getMD5String(user.getUserPassword());
+        user.setUserPassword(md5String);
+        userMapper.registerUser(user);
 
-        return  ;
     }
+
+
 }
