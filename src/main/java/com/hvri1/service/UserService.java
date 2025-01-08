@@ -14,4 +14,5 @@ public interface UserService {
     void registerUser(User user);
 
 
+    String findUserPasswordByUsername(String username);
 }

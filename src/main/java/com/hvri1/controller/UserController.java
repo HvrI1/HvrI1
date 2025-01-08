@@ -4,6 +4,7 @@ import com.hvri1.pojo.Result;
 import com.hvri1.pojo.User;
 import com.hvri1.service.UserService;
 import com.hvri1.utils.JwtUtil;
+import com.hvri1.utils.Md5Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,7 +40,8 @@ public class UserController {
         if(username==null || password==null) return Result.error("用户名或密码不能为空");
         User user = userService.findUserByUsername(username);
         if(user==null) return Result.error("用户不存在");
-        if(!user.getUserPassword().equals(password)) return Result.error("用户名或密码错误");
+        String db_encrypt_password = userService.findUserPasswordByUsername(username);
+        if(!Md5Util.checkPassword(password,db_encrypt_password)) return Result.error("用户名或密码错误");
         else {
             //利用jwt生成令牌
             HashMap<String, Object>  map = new HashMap<>();
@@ -47,6 +49,7 @@ public class UserController {
             map.put("password",password);
             String token = JwtUtil.genToken(map);
             return Result.success(token);
+
         }
     }
 
@@ -57,7 +60,8 @@ public class UserController {
         if(user.getUserName()==null||user.getUserPassword()==null) return Result.error("用户名或密码不能为空");
         User db_user = userService.findUserByUsername(user.getUserName());
         if(db_user!=null) return Result.error("用户已存在");
-         userService.registerUser(user);
+        userService.registerUser(user);
+        return Result.success();
     }
 
 }

@@ -33,5 +33,11 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public String findUserPasswordByUsername(String username) {
+        String db_encrypt_password = userMapper.findUserPasswordByUsername(username);
+        return db_encrypt_password;
+    }
+
 
 }
