@@ -15,4 +15,6 @@ public interface UserService {
 
 
     String findUserPasswordByUsername(String username);
+
+//    Integer updateUserInfoById(User user);
 }

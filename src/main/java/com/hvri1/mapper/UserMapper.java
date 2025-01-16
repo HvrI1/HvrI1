@@ -4,6 +4,7 @@ import com.hvri1.pojo.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -21,4 +22,9 @@ public interface UserMapper {
     void registerUser(User user);
     @Select("select user_password from user where user_username=#{username}")
     String findUserPasswordByUsername(String username);
+
+//    @Update("UPDATE user " +
+//            "SET user_name = #{userName}, user_age = #{userAge},user_sex = #{userSex},user_name = #{userName},user_name = #{userName}," +
+//            "WHERE condition;")
+//    Integer updateUserInfoById(Integer id, User user);
 }

@@ -39,5 +39,14 @@ public class UserServiceImpl implements UserService {
         return db_encrypt_password;
     }
 
+//    @Override
+//    public Integer updateUserInfoById(User user) {
+//        //前端传进来的user没有id，这里需要使用local中的id信息
+//        Integer id = 0;
+//        //
+//        userMapper.updateUserInfoById(id,user);
+//        return null;
+//    }
+
 
 }

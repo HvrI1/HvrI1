@@ -49,11 +49,8 @@ public class UserController {
             map.put("password",password);
             String token = JwtUtil.genToken(map);
             return Result.success(token);
-
         }
     }
-
-
     //注册
     @PostMapping("/register")
     public Result<User> register(@RequestBody User user){
@@ -63,5 +60,15 @@ public class UserController {
         userService.registerUser(user);
         return Result.success();
     }
+
+//    //根据ID更新用户信息
+//    @PostMapping("/updateUserInfoById")
+//    public Result<Integer> updateUserInfoById(@RequestBody User user){
+//        if(user!=null) {
+//            userService.updateUserInfoById(user);
+//            return Result.success();
+//        }
+//        else return Result.error("传入的User对象信息为空");
+//    }
 
 }
